@@ -1,4 +1,6 @@
 # Small-Ethiopian-Village-Demo
-A small culture related village in Ethiopia made using OpenGl and PyGame. for now.
+A small culture related village in Ethiopia made using OpenGl and PyGame. 
+# Blender 
+to draw the house and mountain looking forms.
 
-Together using blender
+# run the village file to see final

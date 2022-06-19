@@ -1,0 +1,53 @@
+
+        ## w: 1 -> 0 degrees
+        ## a: 2 -> 90 degrees
+        ## w & a: 3 -> 45 degrees
+        ## s: 4 -> 180 degrees
+        # w & s: 5 -> x
+        ## a & s: 6 -> 135 degrees
+        ## w & a & s: 7 -> 90 degrees
+        ## d: 8 -> 270 degrees
+        ## w & d: 9 -> 315 degrees
+        # a & d: 10 -> x
+        ## w & a & d: 11 -> 0 degrees
+        ## s & d: 12 -> 225 degrees
+        ## w & s & d: 13 -> 270 degrees
+        ## a & s & d: 14 -> 180 degrees
+        # w & a & s & d: 15 -> x
+
+# insert into display render
+  # model_matrixT = pyrr.matrix44.multiply(
+            #     m1 =model_matrixT,
+            #     m2 =pyrr.matrix44.create_from_eulers(
+            #         eulers=np.radians(objs.eulers),
+            #         dtype=np.float32
+            #     )
+            # )
+
+# add key to small village file
+ # if keys[pg.K_w]:
+        #     multiple_key_press += 1
+        # if keys[pg.K_a]:
+        #     multiple_key_press += 2
+        # if keys[pg.K_s]:
+        #     multiple_key_press += 4
+        # if keys[pg.K_d]:
+        #     multiple_key_press += 8
+        # if keys[pg.K_w] and keys[pg.K_a]:
+        #     degree_with_key = 45
+
+        # if multiple_key_press > 0:
+        #     if multiple_key_press == 3:
+        #         degree_with_key = 45
+        #     elif multiple_key_press == 2 or multiple_key_press == 7:
+        #         degree_with_key = 90
+        #     elif multiple_key_press == 6:
+        #         degree_with_key = 135
+        #     elif multiple_key_press == 4 or multiple_key_press == 14:
+        #         degree_with_key = 180
+        #     elif multiple_key_press == 12:
+        #         degree_with_key = 225
+        #     elif multiple_key_press == 8 or multiple_key_press == 13:
+        #         degree_with_key = 270
+        #     elif multiple_key_press == 9:
+        #         degree_with_key = 315

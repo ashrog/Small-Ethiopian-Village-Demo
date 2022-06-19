@@ -1,9 +1,10 @@
 from OpenGL.GL import *
 from OpenGL.GL.shaders import *
 import numpy as np
+import os
 
 
-class Mesh:
+class BlenderObject:
 
     def __init__(self, filename):
         # x, y, z, s, t, nx, ny, nz
@@ -12,11 +13,11 @@ class Mesh:
         self.vertex_count = len(self.vertices) // 8
         self.vertices = np.array(self.vertices, dtype=np.float32)
 
-        self.vao = glGenVertexArrays(1)
-        glBindVertexArray(self.vao)
+        self.objVAO = glGenVertexArrays(1)
+        glBindVertexArray(self.objVAO)
 
-        self.vbo = glGenBuffers(1)
-        glBindBuffer(GL_ARRAY_BUFFER, self.vbo)
+        self.objVBO = glGenBuffers(1)
+        glBindBuffer(GL_ARRAY_BUFFER, self.objVBO)
         glBufferData(GL_ARRAY_BUFFER, self.vertices.nbytes, self.vertices, GL_STATIC_DRAW)
         # position
         glEnableVertexAttribArray(0)
@@ -25,19 +26,23 @@ class Mesh:
         glEnableVertexAttribArray(1)
         glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 32, ctypes.c_void_p(12))
 
-    def loadMesh(self, filename):
 
-        # raw, unassembled data
+    def getFileContents(filename):
+        p = os.path.join(os.getcwd(), "model", filename)
+        return open(p, 'r').readline()
+    
+    def loadMesh(self, filename):
         v = []
         vt = []
         vn = []
 
-        # final, assembled and packed result
+        #v, vt, vn finally become one in vertices
         vertices = []
 
         # open the obj file and read the data
-        with open(filename, 'r') as f:
-            line = f.readline()
+        
+        with open(filename, 'r') as file:
+            line = file.readline()
             while line:
                 firstSpace = line.find(" ")
                 flag = line[0:firstSpace]
@@ -78,15 +83,13 @@ class Mesh:
                         faceTextures.append(vt[texture])
                         normal = int(l[2]) - 1
                         faceNormals.append(vn[normal])
-                    # obj file uses triangle fan format for each face individually.
-                    # unpack each face
-                    triangles_in_face = len(line) - 2
+                    #unpack each face with a triangle format.
+                   
+                    triangles_per_face = len(line) - 2
 
                     vertex_order = []
-                    """
-                        eg. 0,1,2,3 unpacks to vertices: [0,1,2,0,2,3]
-                    """
-                    for i in range(triangles_in_face):
+                 
+                    for i in range(triangles_per_face):
                         vertex_order.append(0)
                         vertex_order.append(i + 1)
                         vertex_order.append(i + 2)
@@ -97,7 +100,7 @@ class Mesh:
                             vertices.append(x)
                         for x in faceNormals[i]:
                             vertices.append(x)
-                line = f.readline()
+                line = file.readline()
         return vertices
 
     def unbind(self):

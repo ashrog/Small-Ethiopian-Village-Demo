@@ -1,7 +1,11 @@
 import numpy as np
 
 
-class Cube:
+class OneJoinedVillage:
+
+    # eulers take value of the roll angle
+    # in x, y , and z order
+    # in "yaw", "pitch", and "fall"
 
     def __init__(self, position, eulers):
         self.position = np.array(position, dtype=np.float32)
