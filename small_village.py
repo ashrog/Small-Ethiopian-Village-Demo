@@ -82,6 +82,7 @@ class Main_Loop:
             degree_with_key = 180
        
     #    key usage implememntation first
+    
             theta_cos_keyC = np.cos(np.deg2rad(self.scene.demoView.theta + degree_with_key))
             theta_sin_keyC = np.sin(np.deg2rad(self.scene.demoView.theta + degree_with_key))
             
