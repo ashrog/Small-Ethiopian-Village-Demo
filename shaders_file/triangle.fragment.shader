@@ -1,13 +1,13 @@
-#version 330 core
+// #version 330 core
 
 
-in vec2 newTexCoord;
+// in vec2 newTexCoord;
 
-out vec4 color;
-uniform sampler2D texSampler;
+// out vec4 color;
+// uniform sampler2D texSampler;
 
-void main()
-{
-    color = texture(texSampler, newTexCoord);
+// void main()
+// {
+//     color = texture(texSampler, newTexCoord);
 
-}
+// }
