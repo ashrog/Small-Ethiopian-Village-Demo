@@ -17,9 +17,10 @@ class GraphicsEngine:
         pg.display.gl_set_attribute(pg.GL_CONTEXT_MINOR_VERSION, 3)
         pg.display.gl_set_attribute(pg.GL_CONTEXT_PROFILE_MASK,
                                     pg.GL_CONTEXT_PROFILE_CORE)
+
         pg.display.set_mode((1850, 970), pg.OPENGL | pg.DOUBLEBUF)
         # initialise opengl
-        glClearColor(1.0, 1.0, 1.0, 1)
+        glClearColor(1.0, 1.0, 1.0, 1.0)
         # self.prog = self.createShader("shaders_file/triangle.vertex.shader", "shaders_file/triangle.fragment.shader")
         self.prog = self.shader_program()
         glUseProgram(self.prog)

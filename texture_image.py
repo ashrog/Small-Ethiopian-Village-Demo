@@ -1,7 +1,6 @@
 import pygame as pg
 from OpenGL.GL import *
 
-
 class Material:
 
     def __init__(self, filepath):
